@@ -1,0 +1,16 @@
+/*movie list component*/
+
+.movies{
+    background-color:#E5E5E5;
+    height: 100vh;
+    position: relative;
+    top: 0px;
+    padding: 10px;
+}
+
+.container{
+   width: 1440px;
+    margin:auto;
+    background: #FFFFFF;
+    
+}

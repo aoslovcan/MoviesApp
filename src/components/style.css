@@ -1,0 +1,14 @@
+.edit{
+    color: #000000;
+    text-decoration-line: underline;
+    text-align: center;
+}
+
+.delete{
+    text-decoration-line: underline;
+    color: #CF1313;
+}
+
+.table{
+    text-align: center;
+}

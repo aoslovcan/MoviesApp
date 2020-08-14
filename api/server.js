@@ -1,0 +1,122 @@
+let express = require('express');
+let request = require('request');
+let bodyParser = require('body-parser');
+let cors = require('cors');
+const bearerToken = require('express-bearer-token');
+let { json } = require('express');
+//Server create
+const server = express();
+
+server.listen('3001', () => {
+  console.log('Server started on port 3001');
+})
+
+//Include json 
+
+server.use(bodyParser.json());
+server.use(bearerToken({
+  bodyKey: 'access_token',
+  queryKey: 'access_token',
+  headerKey: 'Bearer',
+  reqKey: 'token',
+  cookie: false, // by default is disabled
+}))
+server.use(bodyParser.urlencoded({ extended: false }));
+
+// aprove connection to server
+server.use(cors());
+
+server.get('/movies', (req, res) => {
+ 
+let token = 'Bearer ' + `${req.header('Authorization')}`;
+console.log('Bearer ' + `${token}`);
+  
+ 
+var options = {
+  'method': 'GET',
+  'url': 'https://zm-job-application.herokuapp.com/movies',
+  'headers': {
+    'Authorization' :  `${token}`
+  }
+};
+request(options, function (error, response) {
+  if (error) throw new Error(error);
+  res.end(JSON.stringify(response.body));
+});
+})
+// Login
+
+server.post('/auth/local', function (req, res) {
+
+  data = req.body.data;
+
+  let email = data.email;
+  let pass =  data.password;
+
+  console.log(data.JSON);
+
+  let options = {
+    'method': 'POST',
+    'url': 'https://zm-job-application.herokuapp.com/auth/local',
+    'headers': {
+    },
+    formData: {
+      'identifier': `${email}`,
+      'password': `${pass}`
+    }
+  };
+
+  console.log(options.formData)
+ 
+  request(options, function (error, response) {
+    if (error) throw new Error(error);
+    res.send(JSON.stringify(response.body));
+  });
+});
+
+server.get('/movies/:id', (req, res) => {
+ 
+  let token = 'Bearer ' + `${req.header('Authorization')}`;
+  console.log('Bearer ' + `${token}`);
+    
+   
+  var options = {
+    'method': 'GET',
+    'url': 'https://zm-job-application.herokuapp.com/movies/'+req.params.id+'',
+    'headers': {
+      'Authorization' :  `${token}`
+    }
+  };
+  request(options, function (error, response) {
+    if (error) throw new Error(error);
+    res.end(JSON.stringify(response.body));
+  });
+  })
+
+
+  server.post('/update', function (req, res) {
+    data = req.body;
+  
+    var request = require('request');
+    var options = {
+      'method': 'PUT',
+      'url': 'https://zm-job-application.herokuapp.com/movies/:id',
+      'headers': {
+      },
+      formData: {
+        'data': '',
+        'files.poster': ''
+      }
+    };
+    request(options, function (error, response) {
+      if (error) throw new Error(error);
+      console.log(response.body);
+    });
+    
+  
+  });
+
+
+
+
+
