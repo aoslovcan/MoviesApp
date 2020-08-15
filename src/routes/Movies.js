@@ -33,15 +33,27 @@ class Movies extends Component {
         const {items} = this.state; 
         return (
             <div className="movies">
-               
+                  <a href="/create">Create new</a>
                   <div className="container">
-                      <div className="row">
+               
+                      <div className="row"> <h1>Movies</h1>
+            <table className="table">
+            <thead>
+              <tr>
+                <th scope="col">Cover image</th>
+                <th scope="col">Title</th>
+                <th scope="col">Publication year</th>
+                <th scope="col">Options</th>
+              </tr>
+            </thead>
+            <tbody>
                           {
                               items.map(item =>
                                 <MovieList title="Movies" key= {item.id} items={item}/>
                                 )
                           }
-                     
+                      </tbody>
+          </table>
                       </div>
                     
                   </div>

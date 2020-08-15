@@ -1,6 +1,8 @@
 let express = require('express');
 let request = require('request');
 let bodyParser = require('body-parser');
+var fs = require('fs');
+
 let cors = require('cors');
 const bearerToken = require('express-bearer-token');
 let { json } = require('express');
@@ -26,6 +28,7 @@ server.use(bodyParser.urlencoded({ extended: false }));
 // aprove connection to server
 server.use(cors());
 
+//get movies
 server.get('/movies', (req, res) => {
  
 let token = 'Bearer ' + `${req.header('Authorization')}`;
@@ -74,10 +77,12 @@ server.post('/auth/local', function (req, res) {
   });
 });
 
+
+//finde one
 server.get('/movies/:id', (req, res) => {
  
   let token = 'Bearer ' + `${req.header('Authorization')}`;
-  console.log('Bearer ' + `${token}`);
+  //console.log('Bearer ' + `${token}`);
     
    
   var options = {
@@ -94,29 +99,90 @@ server.get('/movies/:id', (req, res) => {
   })
 
 
-  server.post('/update', function (req, res) {
+  //update
+  server.put('/update', function (req, res) {
     data = req.body;
+  console.log(data);
+let token = 'Bearer ' + `${data.token}`;
+console.log(token)
+let movie = {
+  title : data.title,
+  year : data.year
+}
+console.log(movie);
   
-    var request = require('request');
-    var options = {
+   var options = {
       'method': 'PUT',
-      'url': 'https://zm-job-application.herokuapp.com/movies/:id',
+      'url': 'https://zm-job-application.herokuapp.com/movies/'+data.id+'',
       'headers': {
+        'Authorization' :  `${token}`
       },
       formData: {
-        'data': '',
-        'files.poster': ''
+        'data': `${JSON.stringify(movie)}`,
+        'files.poster': `${data.url}`
       }
     };
     request(options, function (error, response) {
       if (error) throw new Error(error);
       console.log(response.body);
     });
-    
+
+  });
+
+  //Create movies
+  server.post('/create', function (req, res) {
+
+    data = req.body.data;
+  console.log(data);
+
+  let token = 'Bearer ' + `${data.token}`;
+  let movie = {
+    title : data.title,
+    year : data.year
+  }
   
+    var options = {
+      'method': 'POST',
+      'url': 'https://zm-job-application.herokuapp.com/movies',
+      'headers': {
+        'Authorization' :  `${token}`
+      },
+      formData: {
+        'data': `${JSON.stringify(movie)}`,
+        'files.poster': {
+          'value': fs.createReadStream('../src/assets/'+`${data.fileName.toString()}`+''),
+          'options': {
+            'filename': `${data.fileName}`,
+            'contentType': null
+          }
+        }
+      }
+    };
+    console.log(options.formData)
+   
+    request(options, function (error, response) {
+      if (error) throw new Error(error);
+      res.send(JSON.stringify(response.body));
+    });
   });
 
 
+server.delete('/delete',function (req, res) {
+  data = req.body;
+console.log(data);
+let token = 'Bearer ' + `${data.token}`;
 
+var options = {
+  'method': 'DELETE',
+  'url': 'https://zm-job-application.herokuapp.com/movies/'+data.id+'',
+  'headers': {
+    'Authorization' :  `${token}`
+  },
+};
+request(options, function (error, response) {
+  if (error) throw new Error(error);
+  console.log(response.body);
+});
 
+}); 
 

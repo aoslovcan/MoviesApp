@@ -48,29 +48,35 @@ class Login extends Component {
     render() {
         const {email, password}= this.state;
         return (
-            <div className="rega">
-      
-            <form onSubmit={this.handleSubmit}>
+         <div className="login">
+      <div className="container">
+            <form  className="create" onSubmit={this.handleSubmit}>
+              <h1>Login</h1>
               <div className="form-group row">
-                <label htmlFor="email" className="col-sm-2" >Email :</label>
-                <div className="col-sm-10">
+                <label htmlFor="email" className="col-sm-12" >Email</label>
+                <div className="col-sm-6">
                   <input className="form-control " id="email" type="email" value={email} name="email" onChange={this.changeHandler} />
                 </div>
     
               </div>
              
               <div className="form-group row">
-                <label htmlFor="password" className="col-sm-2" >Password :</label>
-                <div className="col-sm-10">
+                <label htmlFor="password" className="col-sm-12" >Password</label>
+                <div className="col-sm-6">
                   <input className="form-control " id="pass" type="password"  value={password}  name="password" onChange={this.changeHandler}/>
                 </div>
               </div>
-    
-    
-    
-              <button className="button" type="submit">Prijava</button>
+              <div className="form-group row">
+               
+              
+                <button className="submit col-sm-7" type="submit">Prijava</button>
+              
+              </div>
+              
+           
             </form>
-          </div>
+            </div>
+            </div>
         );
     }
 }

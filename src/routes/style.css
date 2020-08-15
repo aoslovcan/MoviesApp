@@ -14,3 +14,93 @@
     background: #FFFFFF;
     
 }
+
+.dropzone{
+    
+    height : 100px;
+    border: 1px dashed grey;
+    text-align: center;
+    line-height: 70px;
+}
+
+.create{
+    width: 50%;
+    position: relative;
+    top:30%;
+    font-family: Merriweather;
+    
+}
+.create .form-group{
+    margin-bottom: 6%;
+}
+.add .container{
+    height: 100vh;
+    background-image: url('../assets/undraw_Tree_swing_646s\ 1.svg');
+    background-repeat: no-repeat;
+    background-position-x: right;
+    width: 100% !important;
+    margin-top: 0px !important;
+
+}
+
+/*Cancle button*/
+
+.cancle{
+    border: 1px solid #BCBCBC;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 5px;
+    width:100px;
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 23px;
+    text-align: center;
+    color: #040404;    
+}
+/*submit button*/
+.submit{
+background: #FD0157;
+border-radius: 5px;
+font-family: Source Sans Pro;
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 23px;
+text-align: center;
+color: #FFFFFF;; 
+padding: 5px;
+width:100px;
+}
+
+/*Cover*/
+.cover{
+   
+
+    background-image: url('../assets/undraw_Tree_swing_646s\ 1.svg');
+    background-repeat: no-repeat;
+    background-position-x: right;
+    width: 1500px;
+    height: 100vh;
+}
+
+.inner{
+    text-align: center;
+    position: relative;
+    top:200px;
+}
+
+.login .create{
+    position: relative;
+    top: 250px;
+}
+
+.login .container{
+    background-image: url('../assets/undraw_videographer_nnc7\ 1.svg');
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: 25%;
+    height: 100vh;
+    
+}

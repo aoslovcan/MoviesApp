@@ -13,7 +13,8 @@ class Edit extends Component {
             isLoaded: false,
             redirect: false,
             url: '',
-            id: '',
+            id : '',
+            token: '',
             title: '',
             year: ''
 
@@ -37,7 +38,8 @@ class Edit extends Component {
                     title: items.title,
                     year: items.year,
                     id: movieId,
-                    url: items.poster['url']
+                    url: items.poster['url'],
+                    token : token
                 });
             })
 
@@ -61,11 +63,18 @@ class Edit extends Component {
     handleSubmit(e) {
         e.preventDefault();
      
-        console.log(this.state.title);
-    
-        //const isValid = this.formValidate();
-    
-        //console.log(isValid);
+        console.log(this.state);
+    let data = this.state;
+
+  
+    axios.put('http://localhost:3001/update',  data)
+    .then(res => {
+      console.log(JSON.parse(res.data));
+     
+     
+      
+      
+    })
    
         
        
