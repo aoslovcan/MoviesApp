@@ -1,12 +1,15 @@
 import React from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import './App.css';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import {faPlus} from '@fortawesome/free-solid-svg-icons';
 import Movies from './routes/Movies';
 import Login from './routes/Login';
 import Edit from './routes/Edit';
 import Create from './routes/Create';
 import Home from './routes/Home';
 
+library.add(faPlus);
 function App() {
   return (
     
