@@ -30,7 +30,7 @@ class Login extends Component {
 
     axios.post('http://localhost:3001/auth/local', { data })
       .then(res => {
-        console.log(JSON.parse(res.data));
+        //console.log(JSON.parse(res.data));
         let data = JSON.parse(res.data);
         sessionStorage.setItem('token', data['jwt']);
         window.location.href = "/movies";

@@ -40,7 +40,11 @@ class Edit extends Component {
                 });
             })
     }
-
+    cancel(){
+          
+       
+        window.location.href="/movies";
+     }
     changeHandler(e) {
 
         const target = e.target;
@@ -108,8 +112,8 @@ class Edit extends Component {
                     </div>
                     <div className="form-group row">
                         <div className="col-sm-3">
-                            <button className="cancle" type="cancel" onClick={() => this.setState(window.location.reload(false)
-                            )}>Cancel</button>
+                            <button className="cancle" type="reset"  onClick={this.cancel
+                            }>Cancel</button>
                         </div>
                         <div className="col-sm-5">
                             <button className="submit" type="submit">Update</button>

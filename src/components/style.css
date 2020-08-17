@@ -7,7 +7,12 @@
 .delete{
     text-decoration-line: underline;
     color: #CF1313;
+    cursor : pointer;
+  
 }
+
+
+
 
 .table{
     text-align: center;

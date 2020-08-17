@@ -22,6 +22,13 @@ class Create extends Component {
     handleDrop = acceptedFiles =>
         this.setState({ fileName: acceptedFiles.map(file => file.name) });
 
+        cancel(){
+          
+       
+           window.location.href="/movies";
+        }
+    
+
     changeHandler = x => {
         this.setState({
             [x.target.name]: x.target.value
@@ -78,8 +85,7 @@ class Create extends Component {
                         </div>
                         <div className="form-group row">
                             <div className="col-sm-3">
-                                <button className="cancle" type="cancel" onClick={() => this.setState(window.location.reload(false)
-                                )}>Cancel</button>
+                            <button className="cancle" type="reset"  onClick={ this.cancel}>Cancel</button>
                             </div>
                             <div className="col-sm-5">
                                 <button className="submit" type="submit">Create</button>

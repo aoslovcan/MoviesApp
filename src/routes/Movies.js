@@ -11,30 +11,50 @@ class Movies extends Component {
 
     this.state = {
       items: [],
+      isLoaded: false
     }
   }
-  componentDidMount() {
 
+  logout(){
+    sessionStorage.clear();
+
+    window.location.href = '/'
+  }
+  componentDidMount() {
+   
     let token = sessionStorage.getItem('token');
-    axios.get('http://localhost:3001/movies', { 'headers': { 'Authorization': token } })
-      .then(res => {
-        let items = JSON.parse(res.data);
-        //console.log(items);
-        this.setState({
-          items: items
-        });
-      })
+
+    if(token){ axios.get('http://localhost:3001/movies', { 'headers': { 'Authorization': token } })
+    .then(res => {
+      let items = JSON.parse(res.data);
+      //console.log(items);
+      this.setState({
+        items: items,
+        isLoaded: true
+      });
+    })}
+   
   }
   render() {
-    const { items } = this.state;
+    const { items, isLoaded } = this.state;
+    if (!isLoaded) {
+      return <div classname="blank">
+        <div className="innerBlank">You have to login  <a className="submit" href="/login">Login</a>
+        </div>
+        </div>;
+  }
+  else{
     return (
       <div className="movies">
+        <button type="reset" className="submit" onClick={ this.logout}>Home</button>
         <div className="container">
           <div className="row">
             <h1>Movies</h1>
             <div className="col-sm-12">
               <a href="/create"><FontAwesomeIcon icon="plus" color=" #CF1313" size="2x" /></a>
             </div>
+
+            
             <table className="table">
               <thead>
                 <tr>
@@ -56,6 +76,8 @@ class Movies extends Component {
         </div>
       </div>
     );
+  }
+   
   }
 }
 export default Movies;

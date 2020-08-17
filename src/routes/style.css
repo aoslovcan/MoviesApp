@@ -90,6 +90,15 @@
     top:200px;
 }
 
+
+.innerBlank{
+    text-align: center;
+    position: relative;
+    top:350px;
+
+    
+}
+
 .login .create{
     position: relative;
     top: 250px;
