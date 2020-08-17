@@ -46,7 +46,7 @@ class Movies extends Component {
   else{
     return (
       <div className="movies">
-        <button type="reset" className="submit" onClick={ this.logout}>Home</button>
+        <button type="reset" className="submit" onClick={ this.logout}>Logout</button>
         <div className="container">
           <div className="row">
             <h1>Movies</h1>
